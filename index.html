@@ -1,130 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>G64 Systems — Private AI for Law Firms</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="G64 Systems builds fully private, specialized LLM systems for law firms." />
-
+  <title>g64 systems</title>
   <style>
-    /* ---------- Typographic & layout baseline (Mechanize-like) ---------- */
-    :root{
-      --text: #111;
-      --bg: #fff;
-      --muted: #555;
-      --link: #0a0a0a;
-      --maxw: 760px;      /* content width */
-      --padOuter: 36px;   /* outer page padding */
-      --padArticle: 28px; /* inner article padding */
-      --border: 2px solid #000;
-      --lh: 1.65;         /* generous line height */
-    }
-
-    html{ color-scheme: light; }
-    body{
+    * { box-sizing: border-box; }
+    html, body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "New York", "Iowan Old Style", Palatino, Georgia, "Times New Roman", Times, serif;
-      font-size: 17px;
-      line-height: var(--lh);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: white;
+      color: black;
     }
 
-    /* Page frame / centered column */
-    .page{
-      max-width: var(--maxw);
-      margin: 48px auto 72px;
-      padding: var(--padOuter);
+    #auth, #site {
+      display: none;
+    }
+    #auth.show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 1em;
+    }
+    #auth form {
+      width: 100%;
+      max-width: 400px;
+    }
+    input {
+      width: 100%;
+      padding: 0.75em;
+      font-size: 1em;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 1em;
+      padding: 0.75em;
+      width: 100%;
+      background: black;
+      color: white;
+      font-size: 1em;
+      border: none;
+      cursor: pointer;
     }
 
-    /* The bordered article wrapper */
-    .article{
-      border: var(--border);
-      padding: var(--padArticle);
+    #site.show {
+      display: block;
+      max-width: 640px;
+      margin: 3em auto;
+      padding: 0 1em;
+      line-height: 1.6;
+      font-size: 1.05em;
     }
 
-    /* Headings: understated, tight leading */
-    h1,h2,h3{
-      font-weight: 600;
-      line-height: 1.25;
-      margin: 0 0 0.6rem 0;
-      letter-spacing: -0.005em;
+    h1, h2 {
+      margin-top: 1.5em;
     }
-    h1{ font-size: 30px; margin-top: 6px; }
-    h2{ font-size: 22px; margin-top: 28px; }
-    h3{ font-size: 19px; margin-top: 22px; }
-
-    p{ margin: 0 0 1rem 0; }
-    ul,ol{ margin: 0.5rem 0 1rem 1.25rem; }
-    li{ margin: 0.25rem 0; }
-
-    /* Subtle separators */
-    hr{
-      border: 0;
-      border-top: 1px solid #000;
-      margin: 1.25rem 0;
-      height: 0;
+    p {
+      margin: 1em 0;
     }
-
-    /* Links: black, underline on hover (very print-like) */
-    a{
-      color: var(--link);
+    a {
+      color: blue;
       text-decoration: none;
-      border-bottom: 1px solid currentColor;
     }
-    a:hover{ text-decoration: underline; }
-
-    /* Small/metadata */
-    .muted{ color: var(--muted); }
-    .kicker{ font-variant-caps: small-caps; letter-spacing: 0.02em; }
-
-    /* Images: centered, full-width within column */
-    img{ max-width: 100%; height: auto; display: block; margin: 1rem auto; }
-
-    /* Mobile tune-up */
-    @media (max-width: 640px){
-      .page{ margin: 28px auto 48px; padding: 20px; }
-      .article{ padding: 18px; }
-      body{ font-size: 16px; }
-      h1{ font-size: 26px; }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <article class="article">
-      <header style="margin-bottom: 1rem;">
-        <div class="kicker muted">G64 Systems, LLC</div>
-        <h1>Private AI for Law Firms</h1>
-      </header>
+  <div id="auth" class="show">
+    <form onsubmit="return checkPassword()">
+      <input type="password" id="pwd" placeholder="Enter password" autofocus required />
+      <button type="submit">Enter</button>
+    </form>
+  </div>
 
-      <!-- Replace everything below with your existing content -->
-      <p>We build fully private, specialized LLM systems for law firms. Drop documents in; the system ingests, organizes, and enables instant Q&amp;A or summaries—no technical skills required.</p>
+  <div id="site">
+    <h1>G64 Systems, LLC.</h1>
+    
+    <p>We are an AI infrastructure company that builds specialized models for law firms. Our solutions let law professionals drop documents into a folder, and the AI organizes them, processes them, and can instantly answer questions or summarize the documents. No technical skills or extra help is needed.</p>
+    <p>Law firms sit on mountains of sensitive PDFs, emails, and filings. Finding, summarizing, and reusing that knowledge is slow and expensive. LLMs are the perfect tool for this because they excel at parsing long, unstructured text and reasoning across it to surface precedent, risk, and next steps in minutes.</p>
+    <p>The problem: General-purpose LLMs (e.g., ChatGPT) can’t be used here. They’re too generalized (unaware of firm-specific clause language, workflows, and risk tolerances, with higher hallucination rates on niche legal corpora) and they’re not private, since sending client data outside the firm’s enclave threatens privilege, ethics, and regulatory compliance. What works is a fine-tuned model that the firm fully owns and controls. But building an in-house AI team and infrastructure is expensive, slow, and complex.</p>
+    <p>The answer: A private, fine-tuned LLM hosted fully inside the firm, trained on its own cases, clauses, templates, and outcomes. It connects to the firm’s document systems, uses strict access controls and encryption, and keeps detailed audit logs. This setup cuts review and drafting from days to minutes, preserves confidentiality, boosts accuracy through legal-specific tuning, keeps all IP in-house, and improves over time with attorney feedback.</p>
+    <p>End-goal: Imagine you had a team of legal assistants that never sleeps, never forgets, and turns days of work into minutes–all while maintaining absolute client confidentiality and actually improving the more you use it. That’s what we’re selling to law firms. Each part of the system is like a team member. Some keep the system fast, some organize documents, some act as guards, and some help the staff ask questions or get work done faster. Everything happens inside the firm’s own private environment, keeping data safe and operations smooth.</p>
 
-      <p>Firms sit on mountains of sensitive PDFs, emails, and filings. Searching and reusing that knowledge is slow and expensive. LLMs excel at parsing long, unstructured text and reasoning across it to surface precedent, risk, and next steps in minutes.</p>
+    <h2>Work with us</h2>
+    
+    <p>If you're interested in working with us, please fill out our application and we'll get back to you. Please note we only work with one client at a time.</p>
 
-      <p>General tools (e.g., ChatGPT) fall short: they’re too generic for firm-specific language and workflows, and they aren’t private—sending client data outside the enclave threatens privilege, ethics, and compliance.</p>
+    <h2>Frequently asked questions</h2>
+    <ul>
+    <li>End-to-end product workflow.<li>
+    <li>Why LLMs are perfect for legal work.</li>
+    <li>ROI in <1 quarter or 100% money back.</li>
+    <li>Our full technological LLM architecture.</li>
+    </ul>
 
-      <p>The answer: private, fine-tuned LLMs deployed on-prem or VPC, trained on your matters, clause libraries, and templates, with secure retrieval over DMS/eDiscovery, role-based access, encryption, audit logs, and per-matter data residency. Result: review and drafting time cut from days to minutes, higher accuracy via domain tuning + retrieval, and IP stays in-house while the system improves with attorney feedback.</p>
+    <h2>Proof of concept</h2>
+    <p><strong>Andrew Yang</strong><br>A partner at a prominent law firm told me AI is now doing work that used to be done by 1st to 3rd year associates.  AI can generate a motion in an hour that might take an associate a week. And the work is better. Someone should tell the folks applying to law school right now. He also said the models are getting noticeably better every few months too.</p>
+    <p><strong>Elon Musk</strong><br>With respect to academic questions, Grok 4 (LLM) is better than PHD level in every subject, no exceptions.</p>
+    <p><strong>McKinsey & Company</strong><br>Top performers are attributing over 10% of their earnings to generative AI implementations.</p>
 
-      <h2>Deliverables</h2>
-      <ul>
-        <li>ROI in &lt; 1 quarter or 100% money back.</li>
-        <li>20+ hours saved per attorney per week.</li>
-        <li>Compliance with privacy and professional-conduct requirements.</li>
-        <li>Non-technical UX; no IT tickets for daily use.</li>
-        <li>Scales from 10 to 10,000+ users without redesign.</li>
-        <li>Future-proof: standards-based with clear upgrade paths.</li>
-      </ul>
 
-      <hr>
+  </div>
 
-      <p class="muted">Follow us on X: <a href="https://x.com/g64systems">@g64systems</a></p>
-      <!-- /Replace up to here -->
-    </article>
-  </main>
+  <script>
+    const PASSWORD = '711';
+
+    function checkPassword() {
+      const input = document.getElementById('pwd').value;
+      if (input === PASSWORD) {
+        document.getElementById('auth').classList.remove('show');
+        document.getElementById('site').classList.add('show');
+        window.scrollTo(0, 0);
+      } else {
+        alert("Incorrect password.");
+      }
+      return false;
+    }
+  </script>
 </body>
-</html>
 </html>
